@@ -1,0 +1,11 @@
+# enviroment
+.env
+
+# python
+*.pyc
+__pycache__
+
+# build
+dist
+build
+pygame_raycaster.egg-info
