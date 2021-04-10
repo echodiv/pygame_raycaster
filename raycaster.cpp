@@ -6,10 +6,11 @@ using namespace std;
 static PyObject *load_map(PyObject* self, PyObject* args)
 {   
     char *fileName = NULL;
-    int mapWidth;
+    int mapWidth = 0;
+    bool knowMapWidth = false;
     string mapInString;
 
-    if(!PyArg_ParseTuple(args, "si", &fileName, &mapWidth)){
+    if(!PyArg_ParseTuple(args, "s", &fileName)){
         return NULL;
     };
     
@@ -33,10 +34,12 @@ static PyObject *load_map(PyObject* self, PyObject* args)
         if(symbol != '\n'){
             PyObject* python_int = Py_BuildValue("i", symbol - '0');
             PyList_Append(python_ins, python_int);
+            if (!knowMapWidth) ++mapWidth;
         }
         else{
             PyList_Append(python_val, PyList_GetSlice(python_ins, i*mapWidth, (i+1)*mapWidth));
             ++i;
+            knowMapWidth = true;
         }
     }
     return python_val;
