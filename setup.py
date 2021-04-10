@@ -7,7 +7,7 @@ def main():
           description="LIbrary for fake 3d games with pygame",
           author="Sergey Batalov",
           author_email="echodiv@outlook.com",
-          ext_modules=[Extension("raycaster", ["raycaster.c"])])
+          ext_modules=[Extension("raycaster", ["raycaster.cpp"])])
 
 
 if __name__ == "__main__":
